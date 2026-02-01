@@ -1,33 +1,27 @@
-🚀 Amazon Price Tracker: Resilient Web Scraping Project
-Project Overview
-A high-performance Python-based automation tool designed to monitor and log prices for multiple products on Amazon India. This project was engineered to demonstrate core competencies in Data Engineering, Asynchronous Request Handling, and Anti-Bot Mitigation.
+# 🚀 Amazon Price Tracker: Resilient Web Scraping Project
 
-Technical Stack
-Language: Python 3.11+
+## **Project Overview**
+This is a **Python-based automation tool** built to track product prices on Amazon India. The project serves as a case study in handling **real-world web security**, data sanitization, and automated logging.
 
-Libraries: Requests (Networking), BeautifulSoup4 (HTML Parsing), CSV (Data Storage), Re (Regex Sanitization)
+## **Technical Stack**
+* **Language:** Python 3.11+
+* **Libraries:** `Requests` (Networking), `BeautifulSoup4` (HTML Parsing), `CSV` (Storage), `Re` (Regex)
+* **Environment:** VS Code / macOS Terminal
 
-Tools: VS Code, Zsh Terminal
+## **Key Features (What Worked)**
+* **URL Sanitization:** Integrated **Regular Expressions** to strip tracking junk from long Amazon links, improving request efficiency.
+* **Data Logging:** Successfully automated the creation of a **structured CSV file** containing timestamps, titles, and prices.
+* **Stealth Logic:** Implemented **User-Agent rotation** and **randomized sleep timers** to mimic human behavior.
 
-Engineering Challenges & Solutions
-1. Anti-Scraping & Bot Detection
-Challenge: Amazon implements sophisticated rate-limiting and IP-level shadow banning.
+## **Engineering Challenges (What Failed & Lessons Learned)**
+One of the most valuable parts of this project was encountering and diagnosing **industrial-grade security measures**:
 
-Solution: Developed a multi-layered stealth strategy including User-Agent rotation, randomized execution delays (6-11s), and Session Management to mimic organic human browsing patterns.
+* **IP Shadow Banning:** Faced persistent blocks even when using mobile hotspots. This highlighted the sophistication of **Amazon's anti-bot algorithms**.
+* **Persistent CAPTCHAs:** Identified that manual browser verification is sometimes required to reset a "trust score" for a specific network.
+* **Browser Fingerprinting:** Learned that Amazon tracks more than just IP; they monitor **device signatures**, making basic `requests` scripts vulnerable to detection over time.
 
-2. Dynamic Data Extraction
-Challenge: E-commerce platforms frequently update HTML class names, causing standard scrapers to break.
-
-Solution: Built a resilient selector logic that queries multiple CSS fallback paths to ensure data integrity across different product categories.
-
-3. URL Sanitization
-Challenge: Raw Amazon URLs contain lengthy tracking parameters that increase payload and detection risk.
-
-Solution: Integrated Regular Expressions (Regex) to automatically sanitize links into their shortest canonical form (ASIN-based), improving script efficiency.
-
-Key Learning Outcomes
-Advanced understanding of HTTP/1.1 Request/Response cycles.
-
-Experience diagnosing Network-level rate limiting and implementing back-off strategies.
-
-Proficiency in File I/O operations for structured data logging (CSV).
+## **How to Run**
+1. Ensure `links.txt` contains your shortened Amazon URLs.
+2. Run the script via terminal:
+   ```zsh
+   python3 scraper.py
